@@ -1,0 +1,81 @@
+<html>
+<head>
+</head>
+<body>
+   <form id="form" method="post">
+       <input type="text", oninput="query()" id="name" placeholder="Name"/></br>
+       <div class="form-label-group">
+            <label for="customRange3" class="form-label">OFF / ON</label>  
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- Rounded switch -->
+            <label class="switch">
+                <input type="checkbox" oninput="query()" id="state" name="state">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <br>
+        <div class="form-label-group">
+            <label for="customRange3" class="form-label">Brightness</label> <br>
+            <input type="range" name="brightness" id="brightness" oninput="query()" class="form-range" min="0" max="100" step="1" id="customRange3">
+        </div>
+       <input type="text", onkeyup="query()" id="body" placeholder="Body"/></br>
+       <input type="submit" value="Add"/>
+    </form> 
+    <div>
+    <h3>The Following data is successfuly posted</h3>
+    <h4 id="title"></h4>
+    <h5 id="bd"></h5>
+    </div>
+</body>
+<script>
+function query(event) {
+// var form=document.getElementById('form')
+
+// form.addEventListener('submit', function(e){
+//  e.preventDefault()
+// const data = {
+//             // 'id' : document.getElementById('id').value,
+//             'id' : "light-light4",
+//             'state' : state,
+//             'brightness' : document.getElementById('brightness').value,
+//             'colourtemp' : document.getElementById('colourtemp').value
+//         };
+//  var name=document.getElementById('name').value
+
+state = document.getElementById('state');
+// console.log(document.getElementById('state'))
+// console.log(state)
+// var res;    
+if (state.checked){
+    state = "ON";
+} else {
+    state = "OFF";
+}
+ 
+//  state = state;
+ var body=document.getElementById('brightness').value;
+
+ fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    state:state,
+    body:body,
+
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  }
+  })
+  .then(function(response){ 
+  return response.json()})
+  .then(function(data)
+  {console.log(data)
+  title=document.getElementById("title")
+  body=document.getElementById("bd")
+  title.innerHTML = data.state
+  body.innerHTML = data.body  
+}).catch(error => console.error('Error:', error)); 
+// });
+}
+</script>
+</html>
