@@ -64,6 +64,14 @@
       height: 25vw;
       object-fit: contain;
     }
+
+    .hide{
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      height: 1px;
+      width: 1px;
+    }
   </style>
 
 </head>
@@ -105,8 +113,8 @@
                 color: white; padding: 2px; background-color: rgb(16, 4, 70);"><b><u>Controls</u></b></h5>
                 <hr>
                 <br>
-                
-                <form class="form-signin" method="POST" id="form1" target="_blank">
+                <iframe name="hiddenFrame" class="hide"></iframe>
+                <form class="form-signin" method="POST" id="form1" target="hiddenFrame">
                   <h5 style="text-align: left; color: white; background-color: rgb(16, 4, 70); padding: 2px;
                   width: 275px;">Enter the IP Address: </h5>
                   <input type="text" style="width: 60px" id="ip1" name="ip1" > .
@@ -212,7 +220,5 @@
     }
   </script>
 </body>
-
-</html>
 
 </html>
