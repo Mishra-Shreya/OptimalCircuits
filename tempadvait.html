@@ -101,29 +101,26 @@
   </nav>
 
   <div class="bg" style="width: 100%;">
+    <center>
     <div class="container" style="border-radius: 20px;">
-      <center>
         <div class="row">
           <!-- style="background-image:'templates/cardbg.png'" -->
           <div class="col-lg-6 mb-lg-0">
             <div class="card card-signin mx-auto mb-lg-0 my-5">
               <div class="card-body">
                 <br>
-                <h5 class="card-title" style="width: 180px; height: 45px; text-align: center; font-size: 30px;
-                color: white; padding: 2px; background-color: rgb(16, 4, 70);"><b><u>Controls</u></b></h5>
+                <h5 class="card-title"><b>Controls</b></h5>
                 <hr>
                 <br>
                 <iframe name="hiddenFrame" class="hide"></iframe>
                 <form class="form-signin" method="POST" id="form1" target="hiddenFrame">
-                  <h5 style="text-align: left; color: white; background-color: rgb(16, 4, 70); padding: 2px;
-                  width: 275px;">Enter the IP Address: </h5>
+                  <h5>Enter the IP Address: </h5>
                   <input type="text" style="width: 60px" id="ip1" name="ip1" > .
                   <input type="text" style="width: 60px" id="ip2" name="ip2" > .
                   <input type="text" style="width: 60px" id="ip3" name="ip3" > .
                   <input type="text" style="width: 60px" id="ip4" name="ip4" ><br><br>
                   <div class="form-label-group">
-                    <label for="customRange3" class="form-label" style="width: 250px; padding-top: 5px; 
-                    color: white; background-color: rgb(16, 4, 70);">
+                    <label for="customRange3" class="form-label">
                       <h5>OFF / ON:
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -136,8 +133,7 @@
                   <br>
                   <hr>
                   <div class="form-label-group">
-                    <label for="customRange3" class="form-label" style="width: 150px; padding-top: 5px; 
-                    color: white; background-color: rgb(16, 4, 70);">
+                    <label for="customRange3" class="form-label">
                       <h5>Brightness</h5>
                     </label> <br>
                     <input type="range" name="brightness" id="brightness" oninput="query()" class="form-range" min="0"
@@ -145,12 +141,11 @@
                   </div>
                   <br>
                   <div class="form-label-group">
-                    <label for="customRange3" class="form-label" style="width: 200px; padding-top: 5px; 
-                    color: white; background-color: rgb(16, 4, 70);">
+                    <label for="customRange3" class="form-label">
                       <h5>Colour Temperature</h5>
                     </label> <br>
-                    <input type="range" name="colourtemp" id="colourtemp" oninput="query()" class="form-range" min="0"
-                      max="100" step="1" id="customRange3"
+                    <input type="range" name="colourtemp" id="colourtemp" oninput="query()" class="form-range" min="40"
+                      max="200" step="1" id="customRange3"
                       style="background-image: linear-gradient( to right,orange,rgb(255, 255, 255),rgb(135, 223, 255)) !important; ">
                   </div>
                   <br>
@@ -161,8 +156,8 @@
             </div>
           </div>
         </div>
-      </center>
     </div>
+  </center>
   </div>
   <div class="footer" style="background-color: rgb(179, 174, 174); padding-left: 35px; height: 50px;">
     <h6 style="text-align: left">Team: Optimal Circuits!</h6>
@@ -195,6 +190,7 @@
         // const url = "about.html";
 
         var bright = document.getElementById('brightness').value
+        var color = document.getElementById('colourtemp').value
 
         const data = {
           // 'id' : document.getElementById('id').value,
@@ -211,9 +207,10 @@
         };
 
         // var url = "https://" + ip + "/light/light4/turn_on";
-        var text = "http://" + ip + "/light/light1/turn_on?id=light-light1&state=" + state + "&brightness=" + bright;
+        var text = "http://" + ip + "/light/light1/turn_on?id=light-light1&state=" + state + "&brightness=" + bright
+        + "&color_temperature=" + color;
         
-        // console.log(text);
+        console.log(text);
         document.getElementById("form1").action = text;
         document.getElementById("form1").submit();
       }
